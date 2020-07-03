@@ -13,7 +13,7 @@ declare(strict_types=1);
  * http://creativecommons.org/licenses/by-sa/3.0
  */
 
-namespace Scrapeer;
+namespace App;
 
 use Exception;
 use RangeException;

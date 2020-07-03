@@ -22,9 +22,11 @@ composer require darkalchemy/scrapeer
 ```
 
 ```php
+use App\Scraper;
+
 require __DIR__ . '/vendor/autoload.php';
 
-$scraper = new Scrapeer\Scraper();
+$scraper = new Scraper();
 
 $tracker = array( 'udp://tracker.coppersurfer.tk:6969/announce' );
 $hash = array( '4344503B7E797EBF31582327A5BAAE35B11BDA01' );

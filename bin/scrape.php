@@ -2,17 +2,13 @@
 
 declare(strict_types=1);
 
-use Scrapeer\Scraper;
+use App\Scraper;
 
-if (file_exists('Scraper.php')) {
-    require 'Scraper.php';
-} else {
-    require '../Scraper.php';
-}
+require __DIR__ . '/../vendor/autoload.php';
 
 $scraper = new Scraper();
-$tracker = array('udp://tracker.coppersurfer.tk:6969/announce');
-$hash = array('4344503B7E797EBF31582327A5BAAE35B11BDA01');
+$tracker = ['udp://tracker.coppersurfer.tk:6969/announce'];
+$hash    = ['4344503B7E797EBF31582327A5BAAE35B11BDA01'];
 
 $info = $scraper->scrape($hash, $tracker);
 var_export($info);
