@@ -2,7 +2,7 @@
     "name": "medariox/scrapeer",
     "description": "Scrapeer, a tiny PHP library that lets you scrape HTTP(S) and UDP trackers for torrent information.",
     "type": "library",
-    "license": "Creative Commons",
+    "license": "CC-BY-3.0",
     "authors": [
         {
             "name": "johannes",
