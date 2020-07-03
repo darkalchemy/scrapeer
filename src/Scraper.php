@@ -95,6 +95,7 @@ class Scraper
         $max_iterations = is_int($max_trackers) ? $max_trackers : count($trackers);
         foreach ($trackers as $index => $tracker) {
             if (!empty($this->infohashes) && $index < $max_iterations) {
+                $tracker  = is_array($tracker) ? $tracker[0] : $tracker;
                 $info     = parse_url($tracker);
                 $protocol = $info['scheme'];
                 $host     = $info['host'];
@@ -292,8 +293,8 @@ class Scraper
      * @param string $host  domain or IP address of the tracker
      * @param int    $port  port number of the tracker, Default 80 (HTTP) or 443 (HTTPS)
      *
-     * @throws Exception if the connection can't be established
      * @throws Exception if the response isn't valid
+     * @throws Exception if the connection can't be established
      *
      * @return string request response
      */
