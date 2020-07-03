@@ -13,7 +13,7 @@ declare(strict_types=1);
  * http://creativecommons.org/licenses/by-sa/3.0
  */
 
-namespace App;
+namespace Medariox;
 
 use Exception;
 use RangeException;
