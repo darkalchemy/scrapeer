@@ -13,13 +13,14 @@ Scrapeer, a tiny PHP library that lets you scrape HTTP(S) and UDP trackers for t
 -  Aims to be as lightweight, straightforward and efficient as possible
 -  Supports scraping via scrape (default) and announce requests :sparkles:
 
+## Basic usage examples
+### Single info-hash and single tracker
+
 To install with composer:
 ```bash
 composer require darkalchemy/scrapeer
 ```
 
-## Basic usage examples
-### Single info-hash and single tracker
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
@@ -38,7 +39,7 @@ Array ( ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 8
 -  If not specified, the port will default to 80 for HTTP/UDP and to 443 for HTTPS.
 -  Single elements may also be strings instead of arrays.
 
-### Single info-hash and multiple trackers (recommended usage):
+### Single info-hash and multiple trackers (recommended usage)
 ```php
 $trackers = array( 'http://www.opentrackr.org/announce', 'udp://tracker.coppersurfer.tk:6969/announce' );
 $hash = array( '4344503B7E797EBF31582327A5BAAE35B11BDA01' );
@@ -53,7 +54,7 @@ Array ( ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 5
 -  First tracker in the array will be used, if it fails (invalid tracker, invalid info-hash or invalid info-hash for that tracker) the second tracker will be used and so on.
 -  In this case we get a valid result from the first tracker, notice that we get different information for the same torrent - this is to be expected, as different trackers may be more or less up-to-date than others.
 
-### Multiple info-hashes and single tracker:
+### Multiple info-hashes and single tracker
 ```php
 $tracker = array( 'http://tracker.internetwarriors.net:1337/announce' );
 $hashes = array( '699cda895af6fbd5a817fff4fe6fa8ab87e36f48', '4344503B7E797EBF31582327A5BAAE35B11BDA01' );
@@ -67,7 +68,7 @@ Array ( ["699cda895af6fbd5a817fff4fe6fa8ab87e36f48"] => Array ( ["seeders"] => 4
 
 -  Info-hashes can be upper or lower case.
 
-### Multiple info-hashes and multiple trackers:
+### Multiple info-hashes and multiple trackers
 ```php
 $trackers = array( 'udp://tracker.coppersurfer.tk:6969/announce', 'http://explodie.org:6969/announce' );
 $hashes = array( '699cda895af6fbd5a817fff4fe6fa8ab87e36f48', '4344503B7E797EBF31582327A5BAAE35B11BDA01' );
@@ -99,7 +100,7 @@ if ( $scraper->has_errors() ) {
 Array ( ["699cda895af6fbd5a817fff4fe6fa8ab87e36f48"] => Array ( ["seeders"] => 49 ["completed"] => 2509 ["leechers"] => 1 ) ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 99 ["completed"] => 7754 ["leechers"] => 7 ) ) Array ( [0] => "Invalid scrape connection (invalidtracker:6767)." )
 ```
 
--  The first tracker is not valid, it will be skipped and an error will be added to the error logger.
+-  The first tracker is not valid, it will be skipped and, an error will be added to the error logger.
 -  The scraper keeps scraping until one valid tracker is found or there are no more trackers to try.
 -  Invalid info-hashes will be logged and skipped.
 
