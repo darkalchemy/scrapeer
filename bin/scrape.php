@@ -15,10 +15,10 @@ $tracker = array('udp://tracker.coppersurfer.tk:6969/announce');
 $hash = array('4344503B7E797EBF31582327A5BAAE35B11BDA01');
 
 $info = $scraper->scrape($hash, $tracker);
-print_r($info);
+var_export($info);
 
 // Check if we have any errors.
 if ($scraper->has_errors()) {
     // Get the errors and print them.
-    print_r($scraper->get_errors());
+    var_export($scraper->get_errors());
 }

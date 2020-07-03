@@ -178,7 +178,7 @@ class Scraper
      */
     private function get_passkey($path)
     {
-        if (!is_null($path) && preg_match('/[a-z0-9]{32}/i', $path, $matches)) {
+        if (!empty($path) && preg_match('/[a-z0-9]{32}/i', $path, $matches)) {
             return '/' . $matches[0];
         }
 

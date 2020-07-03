@@ -1,25 +1,25 @@
 # Scrapeer
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5e44726069a34d50976a9008cb3920aa)](https://www.codacy.com/app/medariox/scrapeer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=medariox/scrapeer&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5a32924d714c42c2b97589ea35e9d980)](https://www.codacy.com/manual/darkalchemy/scrapeer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=darkalchemy/scrapeer&amp;utm_campaign=Badge_Grade)
 
 Scrapeer, a tiny PHP library that lets you scrape HTTP(S) and UDP trackers for torrent information.
 
-# Features
-- Retrieves seeders, leechers and completed torrent information
-- Supports HTTP, HTTPS and UDP trackers
-- Automatically discards invalid trackers and info-hashes
-- Allows setting timeout per tracker and max. number of trackers
-- Supports up to 64 info-hashes per scrape
-- Aims to be as lightweight, straightforward and efficient as possible
-- Supports scraping via scrape (default) and announce requests :sparkles:
+## Features
+-  Retrieves seeders, leechers and completed torrent information
+-  Supports HTTP, HTTPS and UDP trackers
+-  Automatically discards invalid trackers and info-hashes
+-  Allows setting timeout per tracker and max. number of trackers
+-  Supports up to 64 info-hashes per scrape
+-  Aims to be as lightweight, straightforward and efficient as possible
+-  Supports scraping via scrape (default) and announce requests :sparkles:
 
 To install with composer:
-```
+```bash
 composer require darkalchemy/scrapeer
 ```
 
-# Basic usage examples
-### Single info-hash and single tracker:
+## Basic usage examples
+### Single info-hash and single tracker
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
@@ -35,8 +35,8 @@ print_r( $info );
 Array ( ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 88 ["completed"] => 7737 ["leechers"] => 6 ) )
 ```
 
-- If not specified, the port will default to 80 for HTTP/UDP and to 443 for HTTPS.
-- Single elements may also be strings instead of arrays.
+-  If not specified, the port will default to 80 for HTTP/UDP and to 443 for HTTPS.
+-  Single elements may also be strings instead of arrays.
 
 ### Single info-hash and multiple trackers (recommended usage):
 ```php
@@ -50,8 +50,8 @@ print_r( $info );
 Array ( ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 59 ["completed"] => 83 ["leechers"] => 3 ) )
 ```
 
-- First tracker in the array will be used, if it fails (invalid tracker, invalid info-hash or invalid info-hash for that tracker) the second tracker will be used and so on.
-- In this case we get a valid result from the first tracker, notice that we get different information for the same torrent - this is to be expected, as different trackers may be more or less up-to-date than others.
+-  First tracker in the array will be used, if it fails (invalid tracker, invalid info-hash or invalid info-hash for that tracker) the second tracker will be used and so on.
+-  In this case we get a valid result from the first tracker, notice that we get different information for the same torrent - this is to be expected, as different trackers may be more or less up-to-date than others.
 
 ### Multiple info-hashes and single tracker:
 ```php
@@ -65,7 +65,7 @@ print_r( $info );
 Array ( ["699cda895af6fbd5a817fff4fe6fa8ab87e36f48"] => Array ( ["seeders"] => 4 ["completed"] => 236 ["leechers"] => 0 ) ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 7 ["completed"] => 946 ["leechers"] => 3 ) )
 ```
 
-- Info-hashes can be upper or lower case.
+-  Info-hashes can be upper or lower case.
 
 ### Multiple info-hashes and multiple trackers:
 ```php
@@ -79,8 +79,8 @@ print_r( $info );
 Array ( ["699cda895af6fbd5a817fff4fe6fa8ab87e36f48"] => Array ( ["seeders"] => 52 ["completed"] => 2509 ["leechers"] => 1 ) ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 97 ["completed"] => 7751 ["leechers"] => 11 ) )
 ```
 
-# Advanced usage examples
-## Error logging
+## Advanced usage examples
+### Error logging
 ```php
 $trackers = array( 'http://invalidtracker:6767/announce', 'udp://tracker.coppersurfer.tk:6969/announce' );
 $hashes = array( '699cda895af6fbd5a817fff4fe6fa8ab87e36f48', '4344503B7E797EBF31582327A5BAAE35B11BDA01' );
@@ -99,9 +99,9 @@ if ( $scraper->has_errors() ) {
 Array ( ["699cda895af6fbd5a817fff4fe6fa8ab87e36f48"] => Array ( ["seeders"] => 49 ["completed"] => 2509 ["leechers"] => 1 ) ["4344503B7E797EBF31582327A5BAAE35B11BDA01"] => Array ( ["seeders"] => 99 ["completed"] => 7754 ["leechers"] => 7 ) ) Array ( [0] => "Invalid scrape connection (invalidtracker:6767)." )
 ```
 
-- The first tracker is not valid, it will be skipped and an error will be added to the error logger.
-- The scraper keeps scraping until one valid tracker is found or there are no more trackers to try.
-- Invalid info-hashes will be logged and skipped.
+-  The first tracker is not valid, it will be skipped and an error will be added to the error logger.
+-  The scraper keeps scraping until one valid tracker is found or there are no more trackers to try.
+-  Invalid info-hashes will be logged and skipped.
 
 ## Advanced options
 ### Maximum trackers
@@ -112,8 +112,8 @@ $hashes = array( '699cda895af6fbd5a817fff4fe6fa8ab87e36f48', '4344503B7E797EBF31
 // The max. amount of trackers to try is 1.
 $info = $scraper->scrape( $hashes, $trackers, 1 );
 ```
-- The scraper will stop after the first tracker, regardless of its validity.
-- Default: All trackers in the array.
+-  The scraper will stop after the first tracker, regardless of its validity.
+-  Default: All trackers in the array.
 
 ### Timeout per tracker
 ```php
@@ -123,8 +123,8 @@ $hashes = array( '699cda895af6fbd5a817fff4fe6fa8ab87e36f48', '4344503B7E797EBF31
 // The max. amount of trackers to try is 2 and timeout per tracker is 3s.
 $info = $scraper->scrape( $hashes, $trackers, 2, 3 );
 ```
-- Each tracker will have a timeout of 3 seconds (total timeout in this case would be 6 seconds).
-- Default: 2 seconds (recommended).
+-  Each tracker will have a timeout of 3 seconds (total timeout in this case would be 6 seconds).
+-  Default: 2 seconds (recommended).
 
 ### Announce scraping
 ```php
@@ -133,12 +133,12 @@ $hashes = array( '699cda895af6fbd5a817fff4fe6fa8ab87e36f48', '4344503B7E797EBF31
 
 $info = $scraper->scrape( $hashes, $trackers, 2, 3, true );
 ```
-- Default: false.
-- Prefer scrape over announce requests for multiple info-hashes (usually faster).
-- _Note:_ UDP trackers only return seeders and leechers information. This is a [protocol limitation](http://www.bittorrent.org/beps/bep_0015.html).
+-  Default: false.
+-  Prefer scrape over announce requests for multiple info-hashes (usually faster).
+-  _Note:_ UDP trackers only return seeders and leechers information. This is a [protocol limitation](http://www.bittorrent.org/beps/bep_0015.html).
 
-# FAQs
-- What are info-hashes? How do I get them?
+## FAQs
+-  What are info-hashes? How do I get them?
 
 From [The BitTorrent Protocol Specification](http://www.bittorrent.org/beps/bep_0003.html):
 
