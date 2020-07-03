@@ -13,10 +13,15 @@ Scrapeer, a tiny PHP library that lets you scrape HTTP(S) and UDP trackers for t
 - Aims to be as lightweight, straightforward and efficient as possible
 - Supports scraping via scrape (default) and announce requests :sparkles:
 
+To install with composer:
+```
+composer require darkalchemy/scrapeer
+```
+
 # Basic usage examples
 ### Single info-hash and single tracker:
 ```php
-require 'Scraper.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $scraper = new Scrapeer\Scraper();
 
