@@ -16,7 +16,7 @@ Scrapeer, a tiny PHP library that lets you scrape HTTP(S) and UDP trackers for t
 # Basic usage examples
 ### Single info-hash and single tracker:
 ```php
-require 'scraper.php';
+require 'Scraper.php';
 
 $scraper = new Scrapeer\Scraper();
 
