@@ -1,7 +1,3 @@
 .idea
 .php_cs.cache
-.php_cs.dist
-composer.json
-composer.lock
-test.php
 vendor/
