@@ -1,6 +1,6 @@
 {
-    "name": "darkalchemy/scrapeer",
-    "description": "torrent scraper",
+    "name": "medariox/scrapeer",
+    "description": "Scrapeer, a tiny PHP library that lets you scrape HTTP(S) and UDP trackers for torrent information.",
     "type": "library",
     "license": "Creative Commons",
     "authors": [
